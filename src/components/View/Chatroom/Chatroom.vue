@@ -37,9 +37,29 @@
 						</div>
 					</div>
 				</li>
+				<li class="message-item">	
+					<div class="mine-msg">
+						<div class="msg-content">
+							<div class="msg-wrapper">
+								<p class="user-name">儒家文化哈哈就</p>
+								<div class="user-msg-box">
+									<div class="triangle"></div>
+									<div class="message">sssssssddddddddddddddddddssssssssssssssssssssssssssssdss</div>
+								</div>
+							</div>
+						</div>
+						<div class="user-avatar">
+							<span class="user-avatar-name">u</span>
+						</div>
+					</div>
+				</li>
 			</ul>
 		</div>
-		<div class="room-footer"></div>
+		<div class="room-footer">
+			<div class="emoji"></div>
+			<div class="message-ipt"></div>
+			<div class="send-btn"></div>
+		</div>
 	</div>
 </template>
 
@@ -62,16 +82,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~@/common/scss/device-width.scss";
+
 .chatroom {
   display: flex;
   flex-direction: column;
   .room-header {
     display: flex;
-		flex: 0 0 48px;
+    flex: 0 0 48px;
     height: 48px;
     background-color: rgb(49, 188, 121);
     .room-type {
-			flex: 0 0 48px;
+      flex: 0 0 48px;
       width: 48px;
       height: 48px;
       padding-left: 8px;
@@ -86,7 +108,7 @@ export default {
       text-align: center;
     }
     .logout-wrapper {
-			flex: 0 0 48px;
+      flex: 0 0 48px;
       width: 48px;
       height: 48px;
       padding-right: 8px;
@@ -102,7 +124,7 @@ export default {
     bottom: 48px;
     width: 100%;
     padding: 4px 8px;
-    background-color: rgba(240,240,240, 0.5);
+    background-color: rgba(240, 240, 240, 0.5);
     box-sizing: border-box;
     .message-list {
       .message-item {
@@ -114,9 +136,9 @@ export default {
           text-align: center;
         }
         .user-msg {
-					display: flex;
+          display: flex;
           .user-avatar {
-						flex: 0 0 32px;
+            flex: 0 0 32px;
             width: 32px;
             height: 32px;
             border-radius: 16px;
@@ -128,36 +150,127 @@ export default {
           .msg-content {
             // display: inline-block;
             // vertical-align: top;
-						flex: 1;
+            flex: 1;
             padding-left: 8px;
-						box-sizing: border-box;
+            box-sizing: border-box;
             .user-name {
-              margin-bottom: 4px;
+              margin-bottom: 8px;
               font-size: 12px;
               color: #ccc;
-							overflow: hidden;
+              overflow: hidden;
             }
             .user-msg-box {
-							position: relative;
-							display: inline-block;
-							max-width: 64%;
+              position: relative;
+              display: inline-block;
+              max-width: 240px;
               padding: 6px 10px 8px 10px;
-							border-radius: 4px;
-							background-color: #fff;
-							.triangle{
-								position: absolute;
-								margin-left: -18px;
-								border: 4px solid transparent;
-								border-right-color: #fff;
-							}
-							.message{
-								// display: inline-block;
-								word-wrap: break-word
-							}
+              border-radius: 4px;
+              background-color: #fff;
+              word-wrap: break-word;
+              @media (min-width: $width-sm) {
+                max-width: 200px;
+              }
+              @media (min-width: $width-md) {
+                max-width: 250px;
+              }
+              @media (min-width: $width-desktop) {
+                max-width: 500px;
+              }
+              .triangle {
+                position: absolute;
+                margin-left: -18px;
+                border: 4px solid transparent;
+                border-right-color: #fff;
+              }
+              .message {
+                // display: inline-block;
+                word-wrap: break-word;
+              }
+            }
+          }
+        }
+        .mine-msg {
+          display: flex;
+          .user-avatar {
+            flex: 0 0 32px;
+            width: 32px;
+            height: 32px;
+            border-radius: 16px;
+            line-height: 32px;
+            font-size: 16px;
+            text-align: center;
+            background-color: $user-color;
+          }
+          .msg-content {
+            // display: inline-block;
+            // vertical-align: top;
+            flex: 1;
+            padding-right: 8px;
+            box-sizing: border-box;
+            .msg-wrapper {
+							float: right;
+							// transform: rotateY(180deg);
+							text-align: right;
+              .user-name {
+                margin-bottom: 8px;
+                font-size: 12px;
+                color: $user-color;
+                overflow: hidden;
+              }
+              .user-msg-box {
+                position: relative;
+                display: inline-block;
+                max-width: 240px;
+                padding: 6px 10px 8px 10px;
+                border-radius: 4px;
+                background-color: #fff;
+                word-wrap: break-word;
+                @media (min-width: $width-sm) {
+                  max-width: 200px;
+                }
+                @media (min-width: $width-md) {
+                  max-width: 250px;
+                }
+                @media (min-width: $width-desktop) {
+                  max-width: 500px;
+                }
+                .triangle {
+                  position: absolute;
+                  margin-left: -18px;
+                  border: 4px solid transparent;
+                  border-right-color: #fff;
+                }
+                .message {
+									// display: inline-block;
+									// transform: rotateY(180deg);
+                  word-wrap: break-word;
+                }
+              }
             }
           }
         }
       }
+    }
+  }
+  .room-footer {
+    position: absolute;
+    display: flex;
+    height: 48px;
+    width: 100%;
+    bottom: 0px;
+    background-color: #f5f;
+    .emoji {
+      flex: 0 0 48px;
+      width: 48px;
+      background-color: #056;
+    }
+    .message-ipt {
+      flex: 1;
+    }
+    .send-btn {
+      flex: 0 0 48px;
+      width: 48px;
+      background-color: #056;
     }
   }
 }
