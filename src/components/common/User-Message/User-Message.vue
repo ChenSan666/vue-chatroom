@@ -1,13 +1,13 @@
 <template>
-	<div class="user-msg">
-		<div class="user-avatar">
-			<span class="user-avatar-name">u</span>
+	<div class="user-msg" v-if="msgobj">
+		<div class="user-avatar" :style="{backgroundColor: msgobj.avatarColor}">
+			<span class="user-avatar-name">{{avatarName}}</span>
 		</div>
 		<div class="msg-content">
-			<p class="user-name">asda</p>
+			<p class="user-name" v-text="msgobj.user"></p>
 			<div class="user-msg-box">
 				<div class="triangle"></div>
-				<div class="message">asdasddddddddddd</div>
+				<div class="message">{{msgobj.content}}</div>
 			</div>
 		</div>
 	</div>
@@ -15,7 +15,12 @@
 
 <script>
 	export default {
-		
+		props: ['msgobj'],
+		computed: {
+			avatarName() {
+				return this.msgobj.user[0]
+			}
+		}
 	}
 </script>
 

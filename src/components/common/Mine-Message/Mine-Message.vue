@@ -2,21 +2,27 @@
 	<div class="mine-msg">
 		<div class="msg-content">
 			<div class="msg-wrapper">
-				<p class="user-name">儒家文化哈哈就</p>
+				<p class="user-name" v-text="userName"></p>
 				<div class="user-msg-box">
 					<div class="triangle"></div>
-					<div class="message">sasdad asd送达  的阿斯达大大大大多ssadasdsada</div>
+					<div class="message" v-text="message"></div>
 				</div>
 			</div>
 		</div>
-		<div class="user-avatar">
-			<span class="user-avatar-name">u</span>
+		<div class="user-avatar" :style="{backgroundColor: avatarColor}">
+			<span class="user-avatar-name" v-if="userName">{{userName[0]}}</span>
 		</div>
 	</div>
 </template>
 
 <script>
-export default {};
+import { mapState } from "vuex";
+export default {
+	props: ['message'],
+	computed: {
+		...mapState(['userName', 'avatarColor'])
+	}
+};
 </script>
 
 <style scoped lang="scss">
