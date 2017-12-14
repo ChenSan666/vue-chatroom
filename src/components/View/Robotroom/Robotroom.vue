@@ -90,7 +90,7 @@ export default {
 			//机器人的回复
 			// console.log(this);
 			// console.log(API_PROXY + API + encodeURIComponent(msg));
-			this.$http.get(API_PROXY + API + encodeURIComponent(msg)).then(res => {
+			this.$http.get(/*API_PROXY + */'http://localhost:3000/api.php?key=free&appid=0&msg='+ encodeURIComponent(msg)).then(res => {
 				res = res.data
 				if(res.result === ERR_OK){
 					// console.log(res.content);
