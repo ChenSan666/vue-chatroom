@@ -3,9 +3,24 @@ var express = require('express')
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-
+var proxy = require('http-proxy-middleware')
+var allowCors = function(req, res, next) {
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+	res.header('Access-Control-Allow-Headers', 'Content-Type');
+	res.header('Access-Control-Allow-Credentials','true');
+	res.header('Content-Type', 'text/json,charset=utf-8');
+	if(next){
+		next();
+	}
+};
 
 app.use(express.static('client'))
+app.use(allowCors)
+app.use('/', proxy({
+	target: 'http://api.qingyunke.com',
+	changeOrigin: true
+}))
 // 在线人数
 var onlineCount = 0;
 
